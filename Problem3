@@ -1,0 +1,49 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Prob3 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner sc = new Scanner(System.in);
+        //Scanner sc = new Scanner(new File("src/scratch.txt"));
+        String string = "";
+        int testCases = Integer.parseInt(sc.nextLine());
+        for (int i = 0; i < testCases; i++) {
+            String system = sc.nextLine();
+            int allSys = Integer.parseInt(system.substring(0, system.indexOf(" ")));
+            int workSys = Integer.parseInt(system.substring(system.indexOf(" ") + 1));
+            String[] completeSys = new String[allSys];
+            String[] workingSys = new String[workSys];
+
+            ArrayList<String> output = new ArrayList<String>();
+
+            for (int j = 0; j < allSys; j++) {
+                completeSys[j] = sc.nextLine();
+            }
+
+            for (int k = 0; k < workSys; k++) {
+                workingSys[k] = sc.nextLine();
+            }
+
+            for (int q = 0; q < completeSys.length; q++) {
+                boolean found = false;
+                for (int z = 0; z < workingSys.length; z++) {
+                    if (completeSys[q].equals(workingSys[z])) {
+                        found = true;
+                    }
+                }
+                if (!found) {
+                    output.add(completeSys[q]);
+                }
+            }
+
+            Collections.sort(output);
+            for (int h = 0; h < output.size(); h++) {
+                string += output.get(h) + "\n";
+            }
+            System.out.print(string);
+        }
+    }
+}
