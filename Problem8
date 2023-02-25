@@ -1,0 +1,43 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Prob8 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner scanner = new Scanner(System.in);
+        String string = "";
+        while (scanner.hasNextLine()) {
+            int testNum = Integer.parseInt(scanner.nextLine());
+            for (int x = 0; x < testNum; x++) {
+                String input = scanner.nextLine();
+                String hello = "";
+                for (int i = 0; i < input.length(); i++) {
+                    int c = input.charAt(i);
+                    switch (c) {
+                        case 'G' :
+                            hello += "1";
+                            break;
+                        case 'C' :
+                            hello += "1";
+                            break;
+                        case 'A' :
+                            hello += "0";
+                            break;
+                        case 'T' :
+                            hello += "0";
+                            break;
+                    }
+                }
+                int lastIndex = 0;
+                String yes = "";
+                for (int i = 0; i < input.length() / 7; i++) {
+                    int letterBinary = Integer.parseInt(hello.substring(7*i,(i+1)*7),2);
+                    lastIndex = lastIndex + 7;
+                    yes += (char)letterBinary;
+                }
+                string += yes + "\n";
+            }
+            System.out.print(string);
+        }
+    }
+}
